@@ -1,10 +1,10 @@
-import TaskList from './TaskList.vue'
+import PureTaskList from './PureTaskList.vue'
 
 import * as TaskStories from './Task.stories'
 
 export default {
-  component: TaskList,
-  title: 'TaskList',
+  component: PureTaskList,
+  title: 'PureTaskList',
   tags: ['autodocs'],
   decorators: [() => ({ template: '<div style="margin: 3em;"><story/></div>' })],
   args: {
@@ -14,6 +14,8 @@ export default {
 
 export const Default = {
   args: {
+    // Shaping the stories through args composition.
+    // The data was inherited from the Default story in Task.stories.js.
     tasks: [
       { ...TaskStories.Default.args.task, id: '1', title: 'Task 1' },
       { ...TaskStories.Default.args.task, id: '2', title: 'Task 2' },
@@ -27,6 +29,8 @@ export const Default = {
 
 export const WithPinnedTasks = {
   args: {
+    // Shaping the stories through args composition.
+    // Inherited data coming from the Default story.
     tasks: [
       ...Default.args.tasks.slice(0, 5),
       { id: '6', title: 'Task 6 (pinned)', state: 'TASK_PINNED' }
@@ -43,6 +47,8 @@ export const Loading = {
 
 export const Empty = {
   args: {
+    // Shaping the stories through args composition.
+    // Inherited data coming from the Loading story.
     ...Loading.args,
     loading: false
   }
