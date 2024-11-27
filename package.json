@@ -24,10 +24,10 @@
     "init-msw": "msw init public/"
   },
   "dependencies": {
-    "vue": "^3.4.21"
+    "vue": "^3.5.13"
   },
   "devDependencies": {
-    "@rushstack/eslint-patch": "^1.8.0",
+    "@rushstack/eslint-patch": "^1.10.4",
     "@storybook/addon-essentials": "^8.4.5",
     "@storybook/addon-interactions": "^8.4.5",
     "@storybook/addon-links": "^8.4.5",
@@ -35,16 +35,16 @@
     "@storybook/test": "^8.4.5",
     "@storybook/vue3": "^8.4.5",
     "@storybook/vue3-vite": "^8.4.5",
-    "@vitejs/plugin-vue": "^5.0.4",
-    "@vue/eslint-config-prettier": "^9.0.0",
-    "eslint": "^8.57.0",
+    "@vitejs/plugin-vue": "^5.2.1",
+    "@vue/eslint-config-prettier": "^10.1.0",
+    "eslint": "^9.15.0",
     "eslint-plugin-storybook": "^0.11.1",
-    "eslint-plugin-vue": "^9.23.0",
-    "msw": "^2.3.0",
+    "eslint-plugin-vue": "^9.31.0",
+    "msw": "^2.6.6",
     "msw-storybook-addon": "^2.0.4",
-    "prettier": "^3.2.5",
+    "prettier": "^3.4.1",
     "storybook": "^8.4.5",
-    "vite": "^5.2.8"
+    "vite": "^6.0.1"
   },
   "resolutions": {
     "jackspeak": "2.1.1"
