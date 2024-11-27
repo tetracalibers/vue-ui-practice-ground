@@ -1,7 +1,7 @@
 <script setup>
 import { computed } from 'vue'
 import PureTaskList from './PureTaskList.vue'
-import { useTaskStore } from '../store'
+import { useTaskStore } from './TaskList-store'
 
 // ストアのインスタンスを作成
 const store = useTaskStore()
