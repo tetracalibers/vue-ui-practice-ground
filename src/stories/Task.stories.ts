@@ -10,7 +10,7 @@ export const ActionsData = {
 // ドキュメント化するコンポーネントについてStorybookに伝えるために、デフォルトのエクスポートを作成
 export default {
   component: Task,
-  title: 'Task',
+  title: 'Tutorial/Task',
   tags: ['autodocs'],
   excludeStories: /.*Data$/,
   args: {
