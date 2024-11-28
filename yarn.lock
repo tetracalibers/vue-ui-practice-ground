@@ -523,7 +523,7 @@
   dependencies:
     memoizerific "^1.11.3"
 
-"@storybook/blocks@8.4.5":
+"@storybook/blocks@8.4.5", "@storybook/blocks@^8.4.5":
   version "8.4.5"
   resolved "https://registry.yarnpkg.com/@storybook/blocks/-/blocks-8.4.5.tgz#9494d9ccddc04bacd6a7a6c67cf870b72bf4ce9d"
   integrity sha512-Z+LHauSqm3A4HBR9pUEf9KQhD3/3xYMt0FXgA+GHCAyDa6lFeD1C6r9Y2nlT+9dt8gv9B9oygTZvV6GqFVyRSQ==
