@@ -25,3 +25,19 @@ const isFolder = computed(() => {
     </ul>
   </li>
 </template>
+
+<style scoped>
+/**
+ * focus ring
+ *
+ * @ref: https://yuheiy.com/2023-12-31-apply-default-focus-ring-styles
+ */
+
+.TreeView-node:focus-visible {
+  outline: 0;
+}
+.TreeView-node:focus-visible > .TreeView-nodeName {
+  outline: auto;
+  outline: auto -webkit-focus-ring-color; /* for Chrome */
+}
+</style>
