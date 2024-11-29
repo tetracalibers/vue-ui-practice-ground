@@ -9,22 +9,26 @@ interface TreeNode {
 
 interface Props {
   model: TreeNode
-  isRoot?: boolean
+  depth?: number
 }
 
+const ROOT_DEPTH = 0
+
 const props = withDefaults(defineProps<Props>(), {
-  isRoot: true
+  depth: ROOT_DEPTH
 })
 
 const isOpen = ref(true)
 const isFolder = computed(() => {
   return props.model.children && props.model.children.length
 })
+
+const isRoot = computed(() => props.depth === ROOT_DEPTH)
 </script>
 
 <template>
-  <li role="treeitem" aria-selected="false" :tabindex="props.isRoot ? 0 : -1" class="TreeView-node">
-    <div class="TreeView-item">
+  <li role="treeitem" aria-selected="false" :tabindex="isRoot ? 0 : -1" class="TreeView-node">
+    <div class="TreeView-item" :style="{ '--depth': props.depth }">
       <div class="spacer"></div>
       <div class="toggle"></div>
       <div class="content">
@@ -33,7 +37,7 @@ const isFolder = computed(() => {
       </div>
     </div>
     <ul v-show="isOpen" v-if="isFolder" role="group" class="TreeView-subtree">
-      <TreeItem v-for="model in model.children" :model="model" :is-root="false" />
+      <TreeItem v-for="model in model.children" :model="model" :depth="props.depth + 1" />
     </ul>
   </li>
 </template>
