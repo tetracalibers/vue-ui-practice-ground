@@ -90,3 +90,15 @@ const data = [
     <TreeItem v-for="model in data" :model="model" />
   </ul>
 </template>
+
+<style scoped>
+/**
+ * reset
+ */
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+</style>

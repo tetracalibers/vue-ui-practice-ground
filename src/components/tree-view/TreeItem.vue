@@ -40,6 +40,16 @@ const isFolder = computed(() => {
 
 <style scoped>
 /**
+ * reset
+ */
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/**
  * focus ring
  *
  * @ref: https://yuheiy.com/2023-12-31-apply-default-focus-ring-styles
