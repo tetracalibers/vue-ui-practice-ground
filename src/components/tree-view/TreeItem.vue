@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { ref, computed } from 'vue'
+import { Icon } from '@iconify/vue'
 
 interface TreeNode {
   id: number
@@ -32,7 +33,11 @@ const isRoot = computed(() => props.depth === ROOT_DEPTH)
       <div class="spacer"></div>
       <div class="toggle"></div>
       <div class="content">
-        <div class="TreeView-nodeVisual"></div>
+        <div class="TreeView-nodeVisual">
+          <Icon v-if="isOpen && isFolder" icon="clarity:folder-open-line" />
+          <Icon v-else-if="isFolder" icon="clarity:folder-line" />
+          <Icon v-else icon="clarity:file-line" />
+        </div>
         <div class="TreeView-nodeName">{{ props.model.label }}</div>
       </div>
     </div>
@@ -74,7 +79,7 @@ ul {
  */
 
 .TreeView-item {
-  --toggle-width: 1rem;
+  --toggle-width: 1em;
   --spacer-col: calc(var(--depth) * (var(--toggle-width) / 2));
   display: grid;
   grid-template-columns: var(--spacer-col) var(--toggle-width) 1fr;
@@ -91,5 +96,18 @@ ul {
 
 .content {
   grid-area: content;
+}
+
+/**
+ * icon layout
+ */
+
+.content {
+  display: flex;
+  align-items: center;
+}
+
+.TreeView-nodeVisual {
+  display: inline-flex; /** for align-items: center; */
 }
 </style>
