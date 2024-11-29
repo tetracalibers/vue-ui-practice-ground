@@ -7,7 +7,12 @@ interface TreeNode {
   children?: TreeNode[]
 }
 
-const props = withDefaults(defineProps<{ model: TreeNode; isRoot?: boolean }>(), {
+interface Props {
+  model: TreeNode
+  isRoot?: boolean
+}
+
+const props = withDefaults(defineProps<Props>(), {
   isRoot: true
 })
 
