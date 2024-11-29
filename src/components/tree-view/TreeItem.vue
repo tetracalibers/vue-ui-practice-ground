@@ -28,7 +28,13 @@ const isRoot = computed(() => props.depth === ROOT_DEPTH)
 </script>
 
 <template>
-  <li role="treeitem" aria-selected="false" :tabindex="isRoot ? 0 : -1" class="TreeView-node">
+  <li
+    role="treeitem"
+    aria-selected="false"
+    :aria-expanded="isFolder ? isOpen : null"
+    :tabindex="isRoot ? 0 : -1"
+    class="TreeView-node"
+  >
     <div class="TreeView-item" :style="{ '--depth': props.depth }">
       <div class="spacer"></div>
       <div class="toggle"></div>
