@@ -19,7 +19,14 @@ const isFolder = computed(() => {
 
 <template>
   <li role="treeitem" aria-selected="false" :tabindex="props.isRoot ? 0 : -1" class="TreeView-node">
-    <div class="TreeView-nodeName">{{ props.model.label }}</div>
+    <div class="TreeView-item">
+      <div class="spacer"></div>
+      <div class="toggle"></div>
+      <div class="content">
+        <div class="TreeView-nodeVisual"></div>
+        <div class="TreeView-nodeName">{{ props.model.label }}</div>
+      </div>
+    </div>
     <ul v-show="isOpen" v-if="isFolder" role="group" class="TreeView-subtree">
       <TreeItem v-for="model in model.children" :model="model" :is-root="false" />
     </ul>
@@ -36,8 +43,34 @@ const isFolder = computed(() => {
 .TreeView-node:focus-visible {
   outline: 0;
 }
-.TreeView-node:focus-visible > .TreeView-nodeName {
+.TreeView-node:focus-visible > .TreeView-item {
   outline: auto;
   outline: auto -webkit-focus-ring-color; /* for Chrome */
+}
+
+/**
+ * layout
+ * 
+ * @ref: https://ishadeed.com/article/tree-view-css-indent/
+ */
+
+.TreeView-item {
+  --toggle-width: 1rem;
+  --spacer-col: calc(calc(var(--level) - 1) * (var(--toggle-width) / 2));
+  display: grid;
+  grid-template-columns: var(--spacer-col) var(--toggle-width) 1fr;
+  grid-template-areas: 'spacer toggle content';
+}
+
+.spacer {
+  grid-area: spacer;
+}
+
+.toggle {
+  grid-area: toggle;
+}
+
+.content {
+  grid-area: content;
 }
 </style>
