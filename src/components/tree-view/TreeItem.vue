@@ -9,28 +9,28 @@ interface TreeNode {
 }
 
 interface Props {
-  model: TreeNode
+  node: TreeNode
   depth?: number
 }
 
 const ROOT_DEPTH = 0
 
 const props = withDefaults(defineProps<Props>(), {
-  depth: ROOT_DEPTH
+  depth: ROOT_DEPTH,
+  selected: false
 })
 
 const isOpen = ref(true)
 const isFolder = computed(() => {
-  return props.model.children && props.model.children.length
+  return props.node.children && props.node.children.length
 })
-
 const isRoot = computed(() => props.depth === ROOT_DEPTH)
 </script>
 
 <template>
   <li
     role="treeitem"
-    aria-selected="false"
+    :aria-selected="false"
     :aria-expanded="isFolder ? isOpen : null"
     :tabindex="isRoot ? 0 : -1"
     class="TreeView-node"
@@ -44,11 +44,11 @@ const isRoot = computed(() => props.depth === ROOT_DEPTH)
           <Icon v-else-if="isFolder" icon="clarity:folder-line" />
           <Icon v-else icon="clarity:file-line" />
         </div>
-        <div class="TreeView-nodeName">{{ props.model.label }}</div>
+        <div class="TreeView-nodeName">{{ props.node.label }}</div>
       </div>
     </div>
     <ul v-show="isOpen" v-if="isFolder" role="group" class="TreeView-subtree">
-      <TreeItem v-for="model in model.children" :model="model" :depth="props.depth + 1" />
+      <TreeItem v-for="node in node.children" :node="node" :depth="props.depth + 1" />
     </ul>
   </li>
 </template>
@@ -115,5 +115,13 @@ ul {
 
 .TreeView-nodeVisual {
   display: inline-flex; /** for align-items: center; */
+}
+
+/**
+ * other styles
+ */
+
+.TreeView-node[aria-selected='true'] > .TreeView-item {
+  background-color: lightblue;
 }
 </style>
