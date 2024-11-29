@@ -75,7 +75,7 @@ ul {
 
 .TreeView-item {
   --toggle-width: 1rem;
-  --spacer-col: calc(calc(var(--level) - 1) * (var(--toggle-width) / 2));
+  --spacer-col: calc(var(--depth) * (var(--toggle-width) / 2));
   display: grid;
   grid-template-columns: var(--spacer-col) var(--toggle-width) 1fr;
   grid-template-areas: 'spacer toggle content';
