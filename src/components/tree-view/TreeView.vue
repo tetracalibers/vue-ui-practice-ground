@@ -86,7 +86,7 @@ const data = [
 </script>
 
 <template>
-  <ul role="tree">
+  <ul role="tree" class="TreeView">
     <TreeItem v-for="model in data" :model="model" />
   </ul>
 </template>
