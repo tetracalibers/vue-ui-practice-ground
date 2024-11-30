@@ -11,14 +11,19 @@ interface TreeNode {
 interface Props {
   node: TreeNode
   depth?: number
+  selectedId: number | null
+}
+
+interface Emits {
+  (e: 'select', id: number): void
 }
 
 const ROOT_DEPTH = 0
 
 const props = withDefaults(defineProps<Props>(), {
-  depth: ROOT_DEPTH,
-  selected: false
+  depth: ROOT_DEPTH
 })
+const emits = defineEmits<Emits>()
 
 const isOpen = ref(true)
 const isFolder = computed(() => {
@@ -30,10 +35,11 @@ const isRoot = computed(() => props.depth === ROOT_DEPTH)
 <template>
   <li
     role="treeitem"
-    :aria-selected="false"
+    :aria-selected="props.selectedId === props.node.id"
     :aria-expanded="isFolder ? isOpen : null"
     :tabindex="isRoot ? 0 : -1"
     class="TreeView-node"
+    @click.stop="() => emits('select', props.node.id)"
   >
     <div class="TreeView-item" :style="{ '--depth': props.depth }">
       <div class="spacer"></div>
@@ -48,7 +54,13 @@ const isRoot = computed(() => props.depth === ROOT_DEPTH)
       </div>
     </div>
     <ul v-show="isOpen" v-if="isFolder" role="group" class="TreeView-subtree">
-      <TreeItem v-for="node in node.children" :node="node" :depth="props.depth + 1" />
+      <TreeItem
+        v-for="node in node.children"
+        :node="node"
+        :depth="props.depth + 1"
+        :selected-id="props.selectedId"
+        @select="($id) => emits('select', $id)"
+      />
     </ul>
   </li>
 </template>

@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { ref, watch } from 'vue'
 import TreeItem from './TreeItem.vue'
 
 const data = [
@@ -83,11 +84,20 @@ const data = [
     ]
   }
 ]
+
+const selectedId = ref<number | null>(null)
+const select = (id: number) => {
+  selectedId.value = id
+}
+
+watch(selectedId, () => {
+  console.log('selectedId:', selectedId.value)
+})
 </script>
 
 <template>
   <ul role="tree" class="TreeView">
-    <TreeItem v-for="node in data" :node="node" />
+    <TreeItem v-for="node in data" :node="node" :selected-id="selectedId" @select="select" />
   </ul>
 </template>
 
