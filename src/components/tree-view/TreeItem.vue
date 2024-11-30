@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref, computed, useTemplateRef, ComponentPublicInstance } from 'vue'
+import { ref, computed, useTemplateRef, ComponentPublicInstance, Ref } from 'vue'
 import { Icon } from '@iconify/vue'
 
 interface TreeNode {
@@ -13,6 +13,7 @@ interface Props {
   depth?: number
   selectedId: number | null
   focusableId: number
+  parent?: HTMLLIElement | null
 }
 
 interface Emits {
@@ -23,7 +24,8 @@ interface Emits {
 const ROOT_DEPTH = 0
 
 const props = withDefaults(defineProps<Props>(), {
-  depth: ROOT_DEPTH
+  depth: ROOT_DEPTH,
+  parent: null
 })
 const emits = defineEmits<Emits>()
 
@@ -63,6 +65,27 @@ const handleArrowRight = () => {
     isOpen.value = true
   }
 }
+
+const handleArrowLeft = () => {
+  if (isFolder.value) {
+    // 子を持つノードにフォーカスがある
+    if (isOpen.value) {
+      // 子が展開されている場合：子のツリーを折りたたむ（フォーカスは移動しない）
+      isOpen.value = false
+    } else {
+      // 子が展開されていない場合：親のノードにフォーカスを移動する
+      props.parent?.focus()
+    }
+  } else {
+    // 子を持たないノードにフォーカスがある
+    if (props.parent) {
+      // 親を持つ場合：親のノードにフォーカスを移動する
+      props.parent.focus()
+    } else {
+      // 親を持たない場合：何もしない
+    }
+  }
+}
 </script>
 
 <template>
@@ -75,6 +98,7 @@ const handleArrowRight = () => {
     class="TreeView-node"
     @click.stop="handleClick"
     @keydown.stop.right="handleArrowRight"
+    @keydown.stop.left="handleArrowLeft"
   >
     <div class="TreeView-item" :style="{ '--depth': props.depth }">
       <div class="spacer"></div>
@@ -92,6 +116,7 @@ const handleArrowRight = () => {
       <TreeItem
         v-for="(node, index) in node.children"
         :ref="(el) => setFirstChildRef(el, index)"
+        :parent="localRootRef"
         :node="node"
         :depth="props.depth + 1"
         :is-first-child="index === 0"
