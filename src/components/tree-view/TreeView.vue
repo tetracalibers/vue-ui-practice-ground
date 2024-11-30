@@ -85,9 +85,11 @@ const data = [
   }
 ]
 
+const focusableId = ref<number>(data[0].id)
 const selectedId = ref<number | null>(null)
 const select = (id: number) => {
   selectedId.value = id
+  focusableId.value = id
 }
 
 watch(selectedId, () => {
@@ -97,7 +99,13 @@ watch(selectedId, () => {
 
 <template>
   <ul role="tree" class="TreeView">
-    <TreeItem v-for="node in data" :node="node" :selected-id="selectedId" @select="select" />
+    <TreeItem
+      v-for="node in data"
+      :node="node"
+      :focusable-id="focusableId"
+      :selected-id="selectedId"
+      @select="select"
+    />
   </ul>
 </template>
 

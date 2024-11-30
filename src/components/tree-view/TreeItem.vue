@@ -12,6 +12,7 @@ interface Props {
   node: TreeNode
   depth?: number
   selectedId: number | null
+  focusableId: number
 }
 
 interface Emits {
@@ -29,7 +30,6 @@ const isOpen = ref(true)
 const isFolder = computed(() => {
   return props.node.children && props.node.children.length
 })
-const isRoot = computed(() => props.depth === ROOT_DEPTH)
 </script>
 
 <template>
@@ -37,7 +37,7 @@ const isRoot = computed(() => props.depth === ROOT_DEPTH)
     role="treeitem"
     :aria-selected="props.selectedId === props.node.id"
     :aria-expanded="isFolder ? isOpen : null"
-    :tabindex="isRoot ? 0 : -1"
+    :tabindex="focusableId === props.node.id ? 0 : -1"
     class="TreeView-node"
     @click.stop="() => emits('select', props.node.id)"
   >
@@ -58,6 +58,7 @@ const isRoot = computed(() => props.depth === ROOT_DEPTH)
         v-for="node in node.children"
         :node="node"
         :depth="props.depth + 1"
+        :focusable-id="props.focusableId"
         :selected-id="props.selectedId"
         @select="($id) => emits('select', $id)"
       />
