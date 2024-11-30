@@ -26,10 +26,20 @@ const props = withDefaults(defineProps<Props>(), {
 })
 const emits = defineEmits<Emits>()
 
-const isOpen = ref(true)
+const isOpen = ref(false)
 const isFolder = computed(() => {
   return props.node.children && props.node.children.length
 })
+
+const toggle = () => {
+  if (!isFolder) return
+  isOpen.value = !isOpen.value
+}
+
+const onClick = () => {
+  toggle()
+  emits('select', props.node.id)
+}
 </script>
 
 <template>
@@ -39,7 +49,7 @@ const isFolder = computed(() => {
     :aria-expanded="isFolder ? isOpen : null"
     :tabindex="focusableId === props.node.id ? 0 : -1"
     class="TreeView-node"
-    @click.stop="() => emits('select', props.node.id)"
+    @click.stop="onClick"
   >
     <div class="TreeView-item" :style="{ '--depth': props.depth }">
       <div class="spacer"></div>
