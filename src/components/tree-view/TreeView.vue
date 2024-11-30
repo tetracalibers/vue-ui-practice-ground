@@ -86,6 +86,10 @@ const data = [
 ]
 
 const focusableId = ref<number>(data[0].id)
+const moveFocurable = (id: number) => {
+  focusableId.value = id
+}
+
 const selectedId = ref<number | null>(null)
 const select = (id: number) => {
   selectedId.value = id
@@ -105,6 +109,7 @@ watch(selectedId, () => {
       :focusable-id="focusableId"
       :selected-id="selectedId"
       @select="select"
+      @move-focusable="moveFocurable"
     />
   </ul>
 </template>
