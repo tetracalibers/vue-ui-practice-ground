@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref, computed, useTemplateRef, ComponentPublicInstance, Ref } from 'vue'
+import { ref, computed, useTemplateRef, ComponentPublicInstance } from 'vue'
 import { Icon } from '@iconify/vue'
 
 interface TreeNode {
