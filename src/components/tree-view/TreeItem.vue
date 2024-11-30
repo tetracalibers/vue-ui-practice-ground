@@ -36,7 +36,7 @@ const toggle = () => {
   isOpen.value = !isOpen.value
 }
 
-const onClick = () => {
+const handleClick = () => {
   toggle()
   emits('select', props.node.id)
 }
@@ -49,7 +49,7 @@ const onClick = () => {
     :aria-expanded="isFolder ? isOpen : null"
     :tabindex="focusableId === props.node.id ? 0 : -1"
     class="TreeView-node"
-    @click.stop="onClick"
+    @click.stop="handleClick"
   >
     <div class="TreeView-item" :style="{ '--depth': props.depth }">
       <div class="spacer"></div>
