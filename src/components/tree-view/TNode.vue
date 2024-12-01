@@ -9,11 +9,14 @@ import {
   handleArrowRight,
   handleArrowUp,
   handleAsterisk,
+  handleCharKey,
   handleEnd,
   handleEnter,
   handleHome,
-  handleSpace
+  handleSpace,
+  isCharKey
 } from './tree-handlers'
+import { useTreeAllNode } from './tree-store'
 
 interface Props {
   node: TreeNodeState
@@ -22,6 +25,8 @@ interface Props {
 }
 const props = withDefaults(defineProps<Props>(), {})
 const tree = toRef(props, 'state')
+
+const globalTree = useTreeAllNode()
 
 const selectedPath = computed(() => {
   const selected = props.state.selected
@@ -126,6 +131,11 @@ const onSpace = () => handleSpace(props.node)
 const onOtherKey = (e: KeyboardEvent) => {
   if (e.key === '*') {
     handleAsterisk(props.node)
+    return
+  }
+  if (isCharKey(e)) {
+    handleCharKey(props.node, globalTree.allNodes as Map<number, TreeNodeState>, e.key)
+    return
   }
 }
 </script>

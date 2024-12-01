@@ -132,3 +132,31 @@ export const handleAsterisk = (node: TreeNodeState) => {
   // 同一階層の子を持つノードをすべて展開
   expandAdjacentNodes(node)
 }
+
+export const isCharKey = (event: KeyboardEvent): boolean => {
+  const { key, altKey, ctrlKey, metaKey } = event
+  if (key === 'Backspace') return true
+  if (key.length !== 1) return false
+  if (altKey || ctrlKey || metaKey) return false
+  return true
+}
+
+export const handleCharKey = (
+  node: TreeNodeState,
+  allNode: Map<number, TreeNodeState>,
+  key: string
+) => {
+  // 入力された文字列と先頭一致するノードにフォーカスを移動する
+
+  const char = key.toLowerCase()
+
+  const nodelist = Array.from(allNode.values()).sort((a, b) => a.id - b.id)
+  const currIndex = nodelist.findIndex((n) => n.id === node.id)
+  const targetNodes = [
+    ...nodelist.slice(currIndex + 1), // 次のノードから検索
+    ...nodelist.slice(0, currIndex + 1) // 見つからなければ、さらに先頭から現在のノードまで検索
+  ]
+
+  const matchNode = targetNodes.find((n) => n.name.toLowerCase().startsWith(char))
+  if (matchNode) matchNode.focus()
+}

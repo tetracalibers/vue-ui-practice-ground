@@ -95,7 +95,7 @@ type NodeType =
 
 abstract class NodeBase<T extends NodeBase<T>> {
   public name = ''
-  public id = ''
+  public id: number
   public type: NodeType = 'node'
   public next: T | null = null
   public previous: T | null = null

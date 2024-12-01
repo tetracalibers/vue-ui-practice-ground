@@ -4,6 +4,7 @@ import NodeGroup from './NodeGroup.vue'
 import { TreeData } from './tree-structure'
 import { MutableTreeState, TreeNodeState } from './tree-operations'
 import { ref } from 'vue'
+import { useTreeAllNode } from './tree-store'
 
 interface Props {
   nodes: TreeData[]
@@ -12,6 +13,8 @@ interface Props {
 }
 const props = withDefaults(defineProps<Props>(), {})
 
+const globalTree = useTreeAllNode()
+
 const currentNodes = ref<TreeNodeState[]>([])
 
 const currentNode = (index: number): TreeNodeState => {
@@ -19,6 +22,7 @@ const currentNode = (index: number): TreeNodeState => {
   const nodeData = props.nodes[index]
   const currentNode = new TreeNodeState(path)
 
+  currentNode.id = nodeData.id
   currentNode.type = nodeData.children ? 'node' : 'leaf'
   currentNode.name = nodeData.label
   currentNode.parent = props.parentNode
@@ -30,6 +34,7 @@ const currentNode = (index: number): TreeNodeState => {
   }
 
   currentNodes.value[index] = currentNode
+  globalTree.addNode(currentNode)
 
   return currentNode
 }
