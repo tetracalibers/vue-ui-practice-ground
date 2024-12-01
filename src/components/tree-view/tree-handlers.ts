@@ -118,6 +118,16 @@ export const handleEnd = (node: TreeNodeState) => {
   end.focus()
 }
 
+export const handleEnter = (node: TreeNodeState) => {
+  // ノードを選択状態にする
+  node.select()
+}
+
+export const handleSpace = (node: TreeNodeState) => {
+  // ノードを選択状態にする
+  node.select()
+}
+
 export const handleAsterisk = (node: TreeNodeState) => {
   // 同一階層の子を持つノードをすべて展開
   expandAdjacentNodes(node)
