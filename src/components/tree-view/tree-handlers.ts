@@ -93,3 +93,9 @@ export const handleArrowLeft = (node: TreeNodeState) => {
   // 子が展開されていない場合 or 子を持たない場合：親のノードを選択
   if (node.hasParent()) selectParent()
 }
+
+export const handleArrowUp = (node: TreeNodeState) => {
+  // 前のノードを選択
+  const previous = getLeftBaseNode(node)
+  previous.select()
+}
