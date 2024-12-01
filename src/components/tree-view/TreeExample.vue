@@ -1,86 +1,133 @@
 <script lang="ts" setup>
 import Tree from './Tree.vue'
+import { TreeData } from './tree-structure'
 
-const data = [
+/**
+
+├─ asset
+│   ├─ css
+│   │   ├─ base.css
+│   │   ├─ main.css
+│   │   └─ vendor.css
+│   ├─ js
+│   │   ├─ module
+│   │   │   ├─ analytics.js
+│   │   │   ├─ carousel.js
+│   │   │   ├─ count.js
+│   │   │   └─ tab.js
+│   │   └─ main.js
+│   └─ image
+│       ├─ bg.svg
+│       ├─ logo.svg
+│       ├─ main.jpg
+│       └─ og-default.png
+├─ profile
+│   └─ index.html
+├─ favicon.ico
+├─ index.html
+└─ robots.txt
+
+*/
+const data: TreeData[] = [
   {
     id: 1,
-    label: 'ノード 1',
+    label: 'asset',
     children: [
       {
         id: 2,
-        label: 'ノード 1.1'
-      },
-      {
-        id: 3,
-        label: 'ノード 1.2'
-      },
-      {
-        id: 4,
-        label: 'ノード 1.3',
+        label: 'css',
         children: [
+          {
+            id: 3,
+            label: 'base.css'
+          },
+          {
+            id: 4,
+            label: 'main.css'
+          },
           {
             id: 5,
-            label: 'ノード 1.3.1'
-          },
-          {
-            id: 6,
-            label: 'ノード 1.3.2',
-            children: [
-              {
-                id: 7,
-                label: 'ノード 1.3.2.1'
-              },
-              {
-                id: 8,
-                label: 'ノード 1.3.2.2'
-              }
-            ]
+            label: 'vendor.css'
           }
         ]
       },
       {
-        id: 9,
-        label: 'ノード 1.4'
-      },
-      {
-        id: 10,
-        label: 'ノード 1.5'
-      }
-    ]
-  },
-  {
-    id: 11,
-    label: 'ノード 2',
-    children: [
-      {
-        id: 12,
-        label: 'ノード 2.1',
+        id: 6,
+        label: 'js',
         children: [
           {
-            id: 13,
-            label: 'ノード 2.1.1'
+            id: 7,
+            label: 'module',
+            children: [
+              {
+                id: 8,
+                label: 'analytics.js'
+              },
+              {
+                id: 9,
+                label: 'carousel.js'
+              },
+              {
+                id: 10,
+                label: 'count.js'
+              },
+              {
+                id: 11,
+                label: 'tab.js'
+              }
+            ]
           },
           {
-            id: 14,
-            label: 'ノード 2.1.2'
+            id: 12,
+            label: 'main.js'
           }
         ]
       },
       {
-        id: 15,
-        label: 'ノード 2.2'
+        id: 13,
+        label: 'image',
+        children: [
+          {
+            id: 14,
+            label: 'bg.svg'
+          },
+          {
+            id: 15,
+            label: 'logo.svg'
+          },
+          {
+            id: 16,
+            label: 'main.jpg'
+          },
+          {
+            id: 17,
+            label: 'og-default.png'
+          }
+        ]
       }
     ]
   },
   {
-    id: 16,
-    label: 'ノード 3',
+    id: 18,
+    label: 'profile',
     children: [
       {
-        id: 17,
-        label: 'ノード 3.1'
+        id: 19,
+        label: 'index.html'
       }
     ]
+  },
+  {
+    id: 20,
+    label: 'favicon.ico'
+  },
+  {
+    id: 21,
+    label: 'index.html'
+  },
+  {
+    id: 22,
+    label: 'robots.txt'
   }
 ]
 </script>
