@@ -2,8 +2,7 @@ import TreeExample from './TreeExample.vue'
 
 export default {
   component: TreeExample,
-  title: 'TreeView',
-  tags: ['autodocs']
+  title: 'TreeView'
 }
 
 export const Default = {}
