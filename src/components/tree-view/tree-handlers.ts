@@ -59,63 +59,63 @@ const expandAdjacentNodes = (node: TreeNodeState, prev = node.previous, next = n
 }
 
 export const handleArrowRight = (node: TreeNodeState) => {
-  const selectChild = () => {
-    node.children.first()!.select()
+  const focusChild = () => {
+    node.children.first()!.focus()
   }
 
   // 子を持つ場合
   if (isNode(node.type)) {
-    // 展開されていない場合：ツリーを展開する
+    // 展開されていない場合：ツリーを展開する（フォーカスは移動しない）
     if (!node.expanded()) {
       node.expand()
       return
     }
 
-    // 展開されている場合：子の最初のノードを選択
-    if (node.hasChildren()) selectChild()
+    // 展開されている場合：子の最初のノードにフォーカスを移動する
+    if (node.hasChildren()) focusChild()
   }
 }
 
 export const handleArrowLeft = (node: TreeNodeState) => {
-  const selectParent = () => {
-    node.parent!.select()
+  const focusParent = () => {
+    node.parent!.focus()
   }
 
   // 子を持つ場合
   if (isNode(node.type)) {
-    // 子が展開されている場合：子のツリーを折りたたむ
+    // 子が展開されている場合：子のツリーを折りたたむ（フォーカスは移動しない）
     if (node.expanded()) {
       node.collapse()
       return
     }
   }
 
-  // 子が展開されていない場合 or 子を持たない場合：親のノードを選択
-  if (node.hasParent()) selectParent()
+  // 子が展開されていない場合 or 子を持たない場合：親のノードにフォーカスを移動する
+  if (node.hasParent()) focusParent()
 }
 
 export const handleArrowUp = (node: TreeNodeState) => {
-  // 前のノードを選択
+  // 前のノードにフォーカスを移動
   const previous = getLeftBaseNode(node)
-  previous.select()
+  previous.focus()
 }
 
 export const handleArrowDown = (node: TreeNodeState) => {
-  // 次のノードを選択
+  // 次のノードにフォーカスを移動
   const next = getRightPowerNode(node)
-  next.select()
+  next.focus()
 }
 
 export const handleHome = (node: TreeNodeState) => {
-  // 最初のノードを選択
+  // 最初のノードにフォーカスを移動
   const start = getStartNode(node)
-  start.select()
+  start.focus()
 }
 
 export const handleEnd = (node: TreeNodeState) => {
-  // 最後のノードを選択
+  // 最後のノードにフォーカスを移動
   const end = getEndNode(node)
-  end.select()
+  end.focus()
 }
 
 export const handleAsterisk = (node: TreeNodeState) => {

@@ -32,7 +32,7 @@ const isExpanded = ref(props.state.expanded.some((path) => Path.equal(path, prop
 const isSelected = ref(Path.equal(selectedPath.value, props.node.path))
 const isSelectedIn = ref(props.node.selectedin())
 
-const itemRef = useTemplateRef('node')
+const listItemRef = useTemplateRef('list-item')
 
 const removePath = <T extends Path>(collection: T[], item: T) => {
   return collection.filter((path) => !Path.equal(item, path))
@@ -57,12 +57,16 @@ watch(
         }
         tree.value.selected = node
         tree.value.focusable = node.path
-        itemRef.value?.focus()
+        listItemRef.value?.focus()
         isSelected.value = true
       })
       .on('deselect', () => {
         node.parent?.selectout()
         isSelected.value = false
+      })
+      .on('focus', () => {
+        tree.value.focusable = node.path
+        listItemRef.value?.focus()
       })
       .on('expand', () => {
         tree.value.expanded = removePath(tree.value.expanded, node.path).concat([node.path])
@@ -124,7 +128,7 @@ const onOtherKey = (e: KeyboardEvent) => {
 
 <template>
   <li
-    ref="node"
+    ref="list-item"
     role="treeitem"
     :aria-selected="isSelected"
     :aria-expanded="isExpanded"

@@ -126,6 +126,7 @@ type TreeNodeEvent =
   | 'collapse' // 折りたたみ
   | 'selectin'
   | 'selectout'
+  | 'focus'
 
 type TreeNodeEventHandler = <T>(...args: T[]) => void
 
@@ -188,6 +189,12 @@ export class TreeNodeState extends NodeBase<TreeNodeState> {
     const handler = this.handlers.get('deselect')
     handler?.call(null, ...args)
     this.isSelected = false
+    return this
+  }
+
+  public focus<T>(...args: T[]): this {
+    const handler = this.handlers.get('focus')
+    handler?.call(null, ...args)
     return this
   }
 
