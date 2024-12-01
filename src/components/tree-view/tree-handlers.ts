@@ -111,3 +111,9 @@ export const handleHome = (node: TreeNodeState) => {
   const start = getStartNode(node)
   start.select()
 }
+
+export const handleEnd = (node: TreeNodeState) => {
+  // 最後のノードを選択
+  const end = getEndNode(node)
+  end.select()
+}
