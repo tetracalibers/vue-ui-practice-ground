@@ -8,6 +8,7 @@ import {
   handleArrowLeft,
   handleArrowRight,
   handleArrowUp,
+  handleAsterisk,
   handleEnd,
   handleHome
 } from './tree-handlers'
@@ -114,6 +115,11 @@ const onArrowUp = () => handleArrowUp(props.node)
 const onArrowDown = () => handleArrowDown(props.node)
 const onHome = () => handleHome(props.node)
 const onEnd = () => handleEnd(props.node)
+const onOtherKey = (e: KeyboardEvent) => {
+  if (e.key === '*') {
+    handleAsterisk(props.node)
+  }
+}
 </script>
 
 <template>
@@ -131,6 +137,7 @@ const onEnd = () => handleEnd(props.node)
     @keydown.stop.down="onArrowDown"
     @keydown.stop.home="onHome"
     @keydown.stop.end="onEnd"
+    @keydown.stop="onOtherKey"
   >
     <div class="TreeView-item" :style="{ '--depth': props.depth }">
       <div class="spacer"></div>

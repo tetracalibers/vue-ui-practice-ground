@@ -117,3 +117,8 @@ export const handleEnd = (node: TreeNodeState) => {
   const end = getEndNode(node)
   end.select()
 }
+
+export const handleAsterisk = (node: TreeNodeState) => {
+  // 同一階層の子を持つノードをすべて展開
+  expandAdjacentNodes(node)
+}
