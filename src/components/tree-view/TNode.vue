@@ -3,7 +3,7 @@ import { computed, ref, toRef, useTemplateRef, watch } from 'vue'
 import { MutableTreeState, Path, TreeNodeState } from './tree-operations'
 import { Icon } from '@iconify/vue'
 import { isNode } from './tree-utils'
-import { handleArrowLeft, handleArrowRight, handleArrowUp } from './tree-handlers'
+import { handleArrowDown, handleArrowLeft, handleArrowRight, handleArrowUp } from './tree-handlers'
 
 interface Props {
   node: TreeNodeState
@@ -104,6 +104,7 @@ const onClick = () => {
 const onArrowRight = () => handleArrowRight(props.node)
 const onArrowLeft = () => handleArrowLeft(props.node)
 const onArrowUp = () => handleArrowUp(props.node)
+const onArrowDown = () => handleArrowDown(props.node)
 </script>
 
 <template>
@@ -118,6 +119,7 @@ const onArrowUp = () => handleArrowUp(props.node)
     @keydown.stop.right="onArrowRight"
     @keydown.stop.left="onArrowLeft"
     @keydown.stop.up="onArrowUp"
+    @keydown.stop.down="onArrowDown"
   >
     <div class="TreeView-item" :style="{ '--depth': props.depth }">
       <div class="spacer"></div>

@@ -99,3 +99,9 @@ export const handleArrowUp = (node: TreeNodeState) => {
   const previous = getLeftBaseNode(node)
   previous.select()
 }
+
+export const handleArrowDown = (node: TreeNodeState) => {
+  // 次のノードを選択
+  const next = getRightPowerNode(node)
+  next.select()
+}
