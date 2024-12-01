@@ -105,3 +105,9 @@ export const handleArrowDown = (node: TreeNodeState) => {
   const next = getRightPowerNode(node)
   next.select()
 }
+
+export const handleHome = (node: TreeNodeState) => {
+  // 最初のノードを選択
+  const start = getStartNode(node)
+  start.select()
+}
