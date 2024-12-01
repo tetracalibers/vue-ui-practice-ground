@@ -1,17 +1,5 @@
-<script lang="ts" setup>
-import { useTemplateRef } from 'vue'
-
-const rootRef = useTemplateRef('root')
-
-defineExpose({
-  focus: () => {
-    rootRef.value?.focus()
-  }
-})
-</script>
-
 <template>
-  <ul role="tree" ref="root">
+  <ul role="tree">
     <slot></slot>
   </ul>
 </template>
