@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import { reactive } from 'vue'
-import { MutableTreeState } from './tree-context'
 import Tree from './Tree.vue'
 
 const data = [
@@ -85,13 +83,8 @@ const data = [
     ]
   }
 ]
-
-const initialTreeState: MutableTreeState = reactive({
-  selected: null,
-  expanded: new Set<string>()
-})
 </script>
 
 <template>
-  <Tree :root="data" :tree-state="initialTreeState" />
+  <Tree :root="data" />
 </template>
