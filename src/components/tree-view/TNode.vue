@@ -3,7 +3,7 @@ import { computed, ref, toRef, useTemplateRef, watch } from 'vue'
 import { MutableTreeState, Path, TreeNodeState } from './tree-operations'
 import { Icon } from '@iconify/vue'
 import { isNode } from './tree-utils'
-import { handleArrowRight } from './tree-handlers'
+import { handleArrowLeft, handleArrowRight } from './tree-handlers'
 
 interface Props {
   node: TreeNodeState
@@ -102,7 +102,7 @@ const onClick = () => {
 }
 
 const onArrowRight = () => handleArrowRight(props.node)
-const onArrowLeft = () => {}
+const onArrowLeft = () => handleArrowLeft(props.node)
 </script>
 
 <template>

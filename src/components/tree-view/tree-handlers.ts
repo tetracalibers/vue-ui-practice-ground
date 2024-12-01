@@ -60,10 +60,10 @@ const expandAdjacentNodes = (node: TreeNodeState, prev = node.previous, next = n
 
 export const handleArrowRight = (node: TreeNodeState) => {
   const selectChild = () => {
-    node.deselect()
     node.children.first()!.select()
   }
 
+  // 子を持つ場合
   if (isNode(node.type)) {
     // 展開されていない場合：ツリーを展開する
     if (!node.expanded()) {
@@ -74,4 +74,22 @@ export const handleArrowRight = (node: TreeNodeState) => {
     // 展開されている場合：子の最初のノードを選択
     if (node.hasChildren()) selectChild()
   }
+}
+
+export const handleArrowLeft = (node: TreeNodeState) => {
+  const selectParent = () => {
+    node.parent!.select()
+  }
+
+  // 子を持つ場合
+  if (isNode(node.type)) {
+    // 子が展開されている場合：子のツリーを折りたたむ
+    if (node.expanded()) {
+      node.collapse()
+      return
+    }
+  }
+
+  // 子が展開されていない場合 or 子を持たない場合：親のノードを選択
+  if (node.hasParent()) selectParent()
 }
