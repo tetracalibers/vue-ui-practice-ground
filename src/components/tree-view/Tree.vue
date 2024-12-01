@@ -10,8 +10,8 @@ interface Props {
 }
 const props = withDefaults(defineProps<Props>(), {})
 
-const state = ref<MutableTreeState>({ selected: [0], expanded: [] })
 const rootNode = new TreeNodeState([])
+const state = ref<MutableTreeState>({ selected: [], expanded: [], focusable: [0] })
 
 const rootRef = useTemplateRef('root')
 

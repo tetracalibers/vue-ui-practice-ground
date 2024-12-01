@@ -1,4 +1,4 @@
-export type MutableTreeState = { selected: TreeNodeState | Path; expanded: Path[] }
+export type MutableTreeState = { selected: TreeNodeState | Path; expanded: Path[]; focusable: Path }
 
 function dropRight<T>(array: T[], n: number = 1): T[] {
   return array.slice(0, array.length - n)

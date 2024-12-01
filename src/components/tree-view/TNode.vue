@@ -19,6 +19,7 @@ const selectedPath = computed(() => {
 })
 
 const isFolder = computed(() => props.node.type === 'node')
+const isFocusable = computed(() => Path.equal(tree.value.focusable, props.node.path))
 const isExpanded = ref(props.state.expanded.some((path) => Path.equal(path, props.node.path)))
 const isSelected = ref(Path.equal(selectedPath.value, props.node.path))
 const isSelectedIn = ref(props.node.selectedin())
@@ -40,13 +41,14 @@ watch(
         isSelectedIn.value = false
       })
       .on('select', () => {
-        if (!Array.isArray(tree.value.selected)) {
-          tree.value.selected.deselect()
+        if (!Array.isArray(props.state.selected)) {
+          props.state.selected.deselect()
         }
         if ((isNode(node.type) && !node.expanded()) || !isNode(node.type)) {
           node.parent?.selectin()
         }
         tree.value.selected = node
+        tree.value.focusable = node.path
         itemRef.value?.focus()
         isSelected.value = true
       })
@@ -109,7 +111,7 @@ const onArrowLeft = () => {}
     role="treeitem"
     :aria-selected="isSelected"
     :aria-expanded="isExpanded"
-    :tabindex="isSelected ? 0 : -1"
+    :tabindex="isFocusable ? 0 : -1"
     class="TreeView-node"
     @click.stop="onClick"
     @keydown.stop.right="onArrowRight"
