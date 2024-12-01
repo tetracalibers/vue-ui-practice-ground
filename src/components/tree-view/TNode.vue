@@ -2,6 +2,7 @@
 import { computed, ref, toRef, useTemplateRef, watch } from 'vue'
 import { MutableTreeState, Path, TreeNodeState } from './tree-operations'
 import { Icon } from '@iconify/vue'
+import { isNode } from './tree-utils'
 
 interface Props {
   node: TreeNodeState
@@ -23,7 +24,6 @@ const isSelectedIn = ref(props.node.selectedin())
 
 const itemRef = useTemplateRef('node')
 
-const isNode = (type: string) => type === 'node'
 const removePath = <T extends Path>(collection: T[], item: T) => {
   return collection.filter((path) => !Path.equal(item, path))
 }
