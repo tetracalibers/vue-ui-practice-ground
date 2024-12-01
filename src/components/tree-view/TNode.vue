@@ -89,7 +89,7 @@ const toggle = () => {
   }
 }
 
-const handleClick = () => {
+const onClick = () => {
   props.node.select()
 
   if (isFolder.value) {
@@ -100,7 +100,7 @@ const handleClick = () => {
 }
 
 const onArrowRight = () => handleArrowRight(props.node)
-const handleArrowLeft = () => {}
+const onArrowLeft = () => {}
 </script>
 
 <template>
@@ -111,9 +111,9 @@ const handleArrowLeft = () => {}
     :aria-expanded="isExpanded"
     :tabindex="isSelected ? 0 : -1"
     class="TreeView-node"
-    @click.stop="handleClick"
+    @click.stop="onClick"
     @keydown.stop.right="onArrowRight"
-    @keydown.stop.left="handleArrowLeft"
+    @keydown.stop.left="onArrowLeft"
   >
     <div class="TreeView-item" :style="{ '--depth': props.depth }">
       <div class="spacer"></div>
