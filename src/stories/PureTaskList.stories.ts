@@ -4,7 +4,7 @@ import * as TaskStories from './Task.stories'
 
 export default {
   component: PureTaskList,
-  title: 'Tutorial/PureTaskList',
+  title: 'archived/Tutorial/PureTaskList',
   tags: ['autodocs'],
   decorators: [() => ({ template: '<div style="margin: 3em;"><story/></div>' })],
   args: {
