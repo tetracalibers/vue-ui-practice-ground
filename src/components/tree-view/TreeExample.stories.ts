@@ -2,7 +2,7 @@ import TreeExample from './TreeExample.vue'
 
 export default {
   component: TreeExample,
-  title: 'TreeView'
+  title: 'UI/TreeView'
 }
 
 export const Default = {}
