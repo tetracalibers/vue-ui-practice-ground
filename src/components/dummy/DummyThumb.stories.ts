@@ -30,6 +30,7 @@ export const Default: Story = {
     `
   }),
   args: {
-    bgColor: 'gray'
+    bgColor: 'gray',
+    showIcon: true
   }
 }

@@ -3,16 +3,18 @@ import { Icon } from '@iconify/vue'
 
 interface Props {
   bgColor?: 'gray' | 'purple' | 'water' | 'orange' | 'pink' | 'green' | 'red' | 'yellow' | 'blue'
+  showIcon?: boolean
 }
 
 withDefaults(defineProps<Props>(), {
-  bgColor: 'gray'
+  bgColor: 'gray',
+  showIcon: true
 })
 </script>
 
 <template>
   <div class="DummyThumb" :class="`--bg-${bgColor}`">
-    <Icon icon="ei:image" width="56px" color="gray" />
+    <Icon v-if="showIcon" icon="ei:image" width="56px" color="gray" />
   </div>
 </template>
 
