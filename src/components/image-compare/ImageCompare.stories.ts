@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/vue3'
 import ImageCompare from './ImageCompare.vue'
 
 const meta: Meta<typeof ImageCompare> = {
-  component: ImageCompare as any,
+  component: ImageCompare,
   title: 'UI/ImageCompare',
   parameters: {
     controls: {
