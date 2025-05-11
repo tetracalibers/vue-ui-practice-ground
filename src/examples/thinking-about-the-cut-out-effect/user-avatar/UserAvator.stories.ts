@@ -3,7 +3,7 @@ import UserAvatar from './UserAvatar.vue'
 
 const meta: Meta<typeof UserAvatar> = {
   component: UserAvatar,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'avatar'],
   title: 'learn-css/thinking-about-the-cut-out-effect/UserAvatar'
 }
 
